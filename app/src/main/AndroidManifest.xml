@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 차량(Android Automotive) 전용 앱 -->
+    <uses-feature android:name="android.hardware.type.automotive" android:required="true" />
+    <uses-feature android:name="android.hardware.wifi" android:required="false" />
+    <uses-feature android:name="android.hardware.screen.portrait" android:required="false" />
+    <uses-feature android:name="android.hardware.screen.landscape" android:required="false" />
+
+    <uses-permission android:name="pleos.car.permission.CAR_DRIVE" />   <!-- 기어·브레이크·핸들 -->
+    <uses-permission android:name="pleos.car.permission.CAR_LIGHTS" />  <!-- 방향지시등 -->
+    <uses-permission android:name="pleos.car.permission.CAR_SEATS" />   <!-- 탑승 인원 -->
+    <uses-permission android:name="pleos.car.permission.CAR_WINDOWS" /> <!-- 와이퍼 -->
+    <uses-permission android:name="android.car.permission.CAR_SPEED" /> <!-- 차속 -->
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="드라이브 밴드"
+        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <!-- 주행 중엔 템포·상태 두 줄만 (조작 없음). 카 밴드 연주는 P 에서만 (앱이 화면을 바꿈) -->
+            <meta-data android:name="distractionOptimized" android:value="true" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
